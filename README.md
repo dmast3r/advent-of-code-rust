@@ -37,7 +37,6 @@ Ensure you have the latest stable Rust toolchain installed.
 To run the solution for a specific day (e.g., Day 1 of 2025):
 
 ```bash
-# Run with release optimizations for accurate timing
 cargo run --bin day01 -p aoc2025
 ```
 
@@ -57,7 +56,7 @@ cargo test --bin day01 -p aoc2025
 
 | Year | Stars | Completion | Remark |
 |---|---|---|---|
-| 2025 | 0/50 | 0% | In Progress |
+| 2025 | 2/12 | 16% | In Progress |
 
 ## Tooling & Clippy
 ```bash
