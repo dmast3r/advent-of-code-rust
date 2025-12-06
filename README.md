@@ -38,6 +38,11 @@ To run the solution for a specific day (e.g., Day 1 of 2025):
 
 ```bash
 # Run with release optimizations for accurate timing
+cargo run --bin day01 -p aoc2025
+```
+
+```bash
+# Run with release optimizations for accurate timing
 cargo run --release --bin day01 -p aoc2025
 ```
 
