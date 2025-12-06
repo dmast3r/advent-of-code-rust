@@ -18,12 +18,11 @@ This repository is organized as a Cargo workspace. Each year is a separate crate
 ├── Cargo.toml          # Workspace definition
 ├── src/
 │   └── lib.rs          # Shared utilities across all years
-├── inputs/
-│   └── 2025/
-│       ├── day01.txt
-│       └── day02.txt
 └── 2025/
     ├── Cargo.toml
+    ├── inputs/
+    │   ├── day01.txt
+    │   └── day02.txt
     └── src/
         ├── bin/
         │   ├── day01.rs

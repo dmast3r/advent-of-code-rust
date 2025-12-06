@@ -11,7 +11,7 @@ fn part2(_input: &str) -> i32 {
 }
 
 fn main() {
-    let input = read_input(2025, 1);
+    let input = read_input(1);
     
     println!("Part 1: {}", part1(&input));
     println!("Part 2: {}", part2(&input));
