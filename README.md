@@ -15,41 +15,45 @@ This repository is organized as a Cargo workspace. Each year is a separate crate
 
 ```text
 .
-├── Cargo.toml        # Workspace definition
-├── 2023
-│   ├── Cargo.toml
-│   └── src
-│       ├── bin
-│       │   ├── day01.rs
-│       │   └── day02.rs
-│       └── lib.rs    # Shared logic/utils
-└── 2024
-    ├── ...
+├── Cargo.toml          # Workspace definition
+├── src/
+│   └── lib.rs          # Shared utilities across all years
+├── inputs/
+│   └── 2025/
+│       ├── day01.txt
+│       └── day02.txt
+└── 2025/
+    ├── Cargo.toml
+    └── src/
+        ├── bin/
+        │   ├── day01.rs
+        │   └── day02.rs
+        └── lib.rs      # Year-specific shared logic
 ```
 
 ## Usage
 Ensure you have the latest stable Rust toolchain installed.
 
 ## Running a Solution
-To run the solution for a specific day (e.g., Day 1 of 2024):
+To run the solution for a specific day (e.g., Day 1 of 2025):
 
 ```bash
 # Run with release optimizations for accurate timing
-cargo run --release --bin day01
+cargo run --release --bin day01 -p aoc2025
 ```
 
 ## Testing
 Each day includes unit tests for the example inputs provided in the puzzle description.
 
 ```bash
-cargo test --bin day01
+cargo test --bin day01 -p aoc2025
 ```
 
 ## Progress Tracker
 
 | Year | Stars | Completion | Remark |
 |---|---|---|---|
-| 2025 | 6/12 | 50% |  |
+| 2025 | 0/50 | 0% | In Progress |
 
 ## Tooling & Clippy
 ```bash
