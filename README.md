@@ -56,7 +56,7 @@ cargo test --bin day01 -p aoc2025
 
 | Year | Stars | Completion | Remark |
 |---|---|---|---|
-| 2025 | 2/12 | 16% | In Progress |
+| 2025 | 4/12 | 33% | In Progress |
 
 ## Tooling & Clippy
 ```bash
