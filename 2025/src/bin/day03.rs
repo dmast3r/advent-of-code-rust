@@ -15,12 +15,8 @@ fn find_max_joltage(batteries: &[i64], count: usize) -> i64 {
     let n = batteries.len();
 
     for (i, &battery) in batteries.iter().enumerate() {
-        while let Some(&val) = stack.last() {
-            if val < battery && (stack.len() + n).saturating_sub(i) > count {
-                stack.pop();
-            } else {
-                break;
-            }
+        while stack.last().is_some_and(|&val| val < battery && stack.len() + n - i > count) {
+            stack.pop();
         }
 
         if stack.len() < count {
