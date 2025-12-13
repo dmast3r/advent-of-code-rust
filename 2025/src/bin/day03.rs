@@ -1,18 +1,18 @@
 use aoc2025::read_input;
 
 fn parse_input(input: &str) -> Vec<Vec<i64>> {
-  input.lines()
-    .map(|row| {
-      row.chars()
-        .filter_map(|ch| ch.to_digit(10))
-        .map(i64::from)
-        .collect()
-    }).collect()
+    input.lines()
+        .map(|row| {
+            row.chars()
+                .filter_map(|ch| ch.to_digit(10))
+                .map(i64::from)
+                .collect()
+        }).collect()
 }
 
 fn find_max_joltage(batteries: &[i64], count: usize) -> i64 {
     let mut stack = Vec::new();
-  let n = batteries.len();
+    let n = batteries.len();
 
     for (i, &battery) in batteries.iter().enumerate() {
         while let Some(&val) = stack.last() {
@@ -23,32 +23,32 @@ fn find_max_joltage(batteries: &[i64], count: usize) -> i64 {
             }
         }
 
-    if stack.len() < count {
-      stack.push(battery);
-    }
+        if stack.len() < count {
+            stack.push(battery);
+        }
     }
 
     stack.iter().fold(0, |acc, &curr| acc * 10 + curr)
 }
 
 fn solve(input: &str, count: usize) -> i64 {
-  let input = parse_input(input);
-  input.iter()
-    .map(|batteries| find_max_joltage(batteries, count))
-    .sum()
+    let input = parse_input(input);
+    input.iter()
+        .map(|batteries| find_max_joltage(batteries, count))
+        .sum()
 }
 
 fn part1(input: &str) -> i64 {
-  solve(input, 2)
+    solve(input, 2)
 }
 
 fn part2(input: &str) -> i64 {
-  solve(input, 12)
+    solve(input, 12)
 }
 
 fn main() {
-  let input = read_input(3);
-  println!("Part 1: {}", part1(&input));
+    let input = read_input(3);
+    println!("Part 1: {}", part1(&input));
     println!("Part 2: {}", part2(&input));
 }
 
