@@ -15,44 +15,32 @@ fn is_paper(i: i32, j: i32, grid: &Vec<Vec<char>>) -> bool {
 }
 
 fn is_valid_paper(i: usize, j: usize, grid: &Vec<Vec<char>>) -> bool {
-    if !is_paper(i as i32, j as i32, grid) {
+    let (i, j) = (i as i32, j as i32);
+
+    if !is_paper(i, j, grid) {
         return false;
     }
 
-    let mut count_neighboring_papers = 0;
+    let neighboring_paper_count: i32 = (-1..=1)
+        .flat_map(|di| (-1..=1).map(move |dj| (di, dj)))
+        .filter(|&(di, dj)| di != 0 || dj != 0)
+        .map(|(di, dj)| (i + di, j + dj))
+        .map(|(adj_i, adj_j)| is_paper(adj_i, adj_j, &grid) as i32)
+        .sum();
 
-    for di in -1..=1 {
-        for dj in -1..=1 {
-            if di == 0 && dj == 0 {
-                continue;
-            }
-
-            if is_paper(i as i32 + di, j as i32 + dj, &grid) {
-                count_neighboring_papers += 1;
-                if count_neighboring_papers == 4 {
-                    return false;
-                }
-            }
-        }
-    }
-
-    true
+    neighboring_paper_count < 4
 }
 
 fn part1(input: &str) -> i64 {
     let grid = parse_input(input);
     let (m, n) = (grid.len(), grid[0].len());
-    let mut res = 0;
 
-    for i in 0..m {
-        for j in 0..n {
-            if is_valid_paper(i, j, &grid) {
-                res += 1;
-            }
-        }
-    }
-
-    res
+    (0..m)
+        .flat_map(|i| {
+            let grid_ref = &grid;
+            (0..n).map(move |j| is_valid_paper(i, j, grid_ref) as i64)
+        })
+        .sum()
 }
 
 fn part2(input: &str) -> i64 {
