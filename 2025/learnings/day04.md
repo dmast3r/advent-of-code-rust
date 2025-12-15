@@ -1,7 +1,7 @@
 ## Key Rust Learnings
 1. The Trap: Nested Iterators & Closures
 
-I tried to replace a nested for loop with a functional flat_map chain.
+I tried to replace a nested for loop with a functional `flat_map` chain.
 
 **My Initial Code (Failed)**:
 
@@ -17,10 +17,10 @@ I tried to replace a nested for loop with a functional flat_map chain.
 })
 ```
 
-**Why it failed**: Rust iterators are lazy. `flat_map` creates a struct (a factory) and returns it. It doesn't run the loop immediately. By the time I actually call `.sum()` or `.collect()` later, the stack frame where i existed is gone. The inner iterator would be pointing to dead memory.
+**Why it failed**: Rust iterators are lazy. `flat_map` creates a struct (a factory) and returns it. It doesn't run the loop immediately. By the time I actually call `.sum()` or `.collect()` later, the stack frame where `i` existed is gone. The inner iterator would be pointing to dead memory.
 
 2. The Solution: The move Keyword
-To fix the dead reference, I need the inner closure to own its own copy of i.
+To fix the dead reference, I need the inner closure to own its own copy of `i`.
 
 **The Fix**
 
@@ -33,7 +33,7 @@ To fix the dead reference, I need the inner closure to own its own copy of i.
 3. The New Problem: "Moving" the Grid
 When I added `move`, it tried to move everything the closure used—including the grid (`Vec<Vec<char>>`).
 
-**Issue**: Vec is not Copy. If the first iterator (row 0) takes ownership of the `grid`, the next iterator (row 1) has nothing left to use.
+**Issue**: `Vec` is not Copy. If the first iterator (row 0) takes ownership of the `grid`, the next iterator (row 1) has nothing left to use.
 
 **Fix**: Explicitly pass a reference.
 
